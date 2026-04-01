@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: clamp(16px, 3vw, 48px);
+    width: 100%;
+}
+
+h2 {
+    margin-bottom: 24px;
+    color: #333;
+    font-size: clamp(18px, 3vw, 36px);
+    font-weight: 500;
+}
+
+/* Login */
+.login-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: clamp(24px, 4vw, 60px);
+    width: min(90vw, 420px);
+}
+
+.login-container input {
+    width: 100%;
+    padding: clamp(10px, 1.5vw, 18px) 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: clamp(14px, 1.8vw, 20px);
+    margin-bottom: 12px;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+#msg {
+    color: red;
+    margin-top: 10px;
+    font-size: clamp(13px, 1.5vw, 18px);
+}
+
+/* Card */
+.card-container {
+    perspective: 1200px;
+    width: min(90vw, 700px);
+    height: clamp(160px, 25vw, 340px);
+    margin: clamp(20px, 3vw, 48px) auto;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: clamp(15px, 2.5vw, 28px);
+    padding: clamp(16px, 3vw, 40px);
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-color: #eef4ff;
+    color: #333;
+}
+
+/* Botões */
+.botoes {
+    margin-top: clamp(16px, 2.5vw, 36px);
+    display: flex;
+    gap: clamp(8px, 2vw, 20px);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: clamp(10px, 1.5vw, 20px) clamp(18px, 3vw, 48px);
+    border: none;
+    border-radius: 8px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: clamp(14px, 1.8vw, 24px);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #357abd;
+}
