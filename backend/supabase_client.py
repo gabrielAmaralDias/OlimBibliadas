@@ -16,10 +16,9 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def pegar_pergunta():
     try:
-        # ✅ Nome da tabela exatamente igual ao do Supabase
-        dados = supabase.table("TB_perguntas").select("id, Pergunta, Reposta").execute()
+        dados = supabase.table("TB_perguntas").select("id, Pergunta, Reposta").order("id").limit(1).execute()
         if dados.data:
-            return random.choice(dados.data)
+            return dados.data[0]
         return None
     except Exception as e:
         raise RuntimeError(f"Erro ao buscar pergunta: {str(e)}")
