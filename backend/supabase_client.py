@@ -1,7 +1,9 @@
 from supabase import create_client, Client
 from dotenv import load_dotenv
 import os
+import random
 
+# Garante que o .env seja carregado aqui também
 load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -12,24 +14,12 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-def pegar_total_perguntas():
+def pegar_pergunta():
     try:
-        dados = supabase.table("TB_perguntas").select("id", count="exact").execute()
-        return dados.count
-    except Exception as e:
-        raise RuntimeError(f"Erro ao contar perguntas: {str(e)}")
-
-def pegar_pergunta(offset: int = 0):
-    try:
-        dados = (
-            supabase.table("TB_perguntas")
-            .select("id, Pergunta, Reposta")
-            .order("id")
-            .range(offset, offset)
-            .execute()
-        )
+        # ✅ Nome da tabela exatamente igual ao do Supabase
+        dados = supabase.table("TB_perguntas").select("id, Pergunta, Reposta").execute()
         if dados.data:
-            return dados.data[0]
+            return random.choice(dados.data)
         return None
     except Exception as e:
         raise RuntimeError(f"Erro ao buscar pergunta: {str(e)}")
